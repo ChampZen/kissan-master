@@ -1,0 +1,808 @@
+{
+    "ApplicationName": "BAIL",
+    "DisplayName": "BAIL",
+    "Description": "Blockchain based Agriculture Insurance and Loan App",
+    "ApplicationRoles": [
+      {
+        "Name": "Farmer",
+        "Description": "Farmer"
+      },
+      {
+        "Name": "Insurer",
+        "Description": "Person providing insurance."
+      },
+      {
+        "Name": "Administrator",
+        "Description": "Assign Roles to users."
+      },
+      {
+        "Name": "Invester",
+        "Description": "People willing to give loan."
+      },
+      {
+        "Name": "WhetherAPI",
+        "Description": "Whether data."
+      }
+    ],
+    "Workflows": [
+      {
+        "Name": "Insurance",
+        "DisplayName": "Insurance",
+        "Description": "Crops Insurance.",
+        "Initiators": [ "Farmer" ],
+        "StartState":  "DocUploaded",
+        "Properties": [
+          {
+            "Name": "State",
+            "DisplayName": "State",
+            "Description": "Holds the state of the current scope",
+            "Type": {
+              "Name": "state"
+            }
+          },
+          {
+            "Name": "Farmerc",
+            "DisplayName": "Farmer",
+            "Description": "Farmer Requesting Insurance",
+            "Type": {
+              "Name": "Farmer"
+            }
+          },
+          {
+            "Name": "Administrator",
+            "DisplayName": "Administrator",
+            "Description": "Administrator",
+            "Type": {
+              "Name": "Administrator"
+            }
+          },
+          {
+            "Name": "InsuranceAmount",
+            "DisplayName": "InsuranceAmount",
+            "Description": "InsuranceAmount",
+            "Type": {
+              "Name": "money"
+            }
+          },
+          {
+            "Name": "Insurerc",
+            "DisplayName": "Insurer",
+            "Description": "Insurerc",
+            "Type": {
+              "Name": "Insurer"
+            }
+          },
+          {
+            "Name": "InsuranceNo",
+            "DisplayName": "InsuranceNo",
+            "Description": "InsuranceNo",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "StartDate",
+            "DisplayName": "StartDate",
+            "Description": "StartDate",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "EndDate",
+            "DisplayName": "EndDate",
+            "Description": "EndDate",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "lat",
+            "DisplayName": "Latitude",
+            "Description": "Latitude",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "lon",
+            "DisplayName": "Longitude",
+            "Description": "Longitude",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "FarmerIns",
+            "DisplayName": "Insurance Aount Recived",
+            "Description": "Insurance Aount Recived",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "MonthTimePeriod",
+            "DisplayName": "MonthTimePeriod",
+            "Description": "MonthTimePeriod",
+            "Type": {
+              "Name": "int"
+            }
+          }
+        ],
+        "Constructor": {
+          "Parameters": [
+            {
+              "Name": "fmr",
+              "Description": "Farmer",
+              "DisplayName": "Farmer",
+              "Type": {
+                "Name": "Farmer"
+              }
+            },
+            {
+              "Name": "ins",
+              "Description": "Insurer",
+              "DisplayName": "Insurer",
+              "Type": {
+                "Name": "Insurer"
+              }
+            },
+            {
+              "Name": "iamt",
+              "Description": "Insurance Amount",
+              "DisplayName": "Insurance Amount",
+              "Type": {
+                "Name": "int"
+              }
+            },
+            {
+              "Name": "ino",
+              "Description": "Insurance No",
+              "DisplayName": "Insurance No",
+              "Type": {
+                "Name": "string"
+              }
+            },
+            {
+              "Name": "tp",
+              "Description": "Time Period in Months",
+              "DisplayName": "Time Period in Months",
+              "Type": {
+                "Name": "int"
+              }
+            },
+            {
+              "Name": "sd",
+              "Description": "Start Date",
+              "DisplayName": "Start Date",
+              "Type": {
+                "Name": "string"
+              }
+            },
+            {
+              "Name": "ed",
+              "Description": "End Date",
+              "DisplayName": "End Date",
+              "Type": {
+                "Name": "string"
+              }
+            },
+            {
+              "Name": "lt",
+              "Description": "Latitude",
+              "DisplayName": "Latitude",
+              "Type": {
+                "Name": "string"
+              }
+            },
+            {
+              "Name": "ln",
+              "Description": "Longitude",
+              "DisplayName": "Longitude",
+              "Type": {
+                "Name": "string"
+              }
+            }
+          ]
+        },
+        "Functions": [
+          {
+            "Name": "changeTelemetry",
+            "DisplayName": "Update Sensor Readings",
+            "Description": "Update Sensor Readings",
+            "Parameters": [
+              {
+                "Name": "temp",
+                "Description": "Temprature",
+                "DisplayName": "Temprature",
+                "Type": {
+                  "Name": "int"
+                }
+              },
+              {
+                "Name": "rain",
+                "Description": "Rain",
+                "DisplayName": "Rain",
+                "Type": {
+                  "Name": "int"
+                }
+              }
+            ]
+          },
+          {
+            "Name": "Reviewed",
+            "DisplayName": "Review Documents",
+            "Description": "Review Documents",
+            "Parameters": [
+                {
+                "Name": "r",
+                  "Description": "accept / reject",
+                  "DisplayName": "accept / reject",
+                  "Type": {
+                    "Name": "int"
+                  }
+                }
+            ]
+          },
+          {
+            "Name": "Expired",
+            "DisplayName": "Insurance Expired",
+            "Description": "Insurance Expired",
+            "Parameters": [
+            ]
+          }
+        ],
+        "States": [
+          {
+            "Name": "DocUploaded",
+            "DisplayName": "Document Uploaded",
+            "Description": "Document Uploaded",
+            "PercentComplete": 20,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": [],
+                "AllowedInstanceRoles": ["Insurerc"],
+                "Description": "...",
+                "Function": "Reviewed",
+                "NextStates": [ "Reviewed", "Terminate" ],
+                "DisplayName": "Review Documents."
+              }
+            ]
+          },
+          {
+            "Name": "Reviewed",
+            "DisplayName": "Insured",
+            "Description": "Insured",
+            "PercentComplete": 50,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": ["WhetherAPI"],
+                "AllowedInstanceRoles": [],
+                "Description": "...",
+                "Function": "changeTelemetry",
+                "NextStates": [ "Drought", "Flood" ],
+                "DisplayName": "Sensor Data."
+              }
+            ]
+            },
+            {
+              "Name": "Completed",
+              "DisplayName": "Completed",
+              "Description": "...",
+              "PercentComplete": 100,
+              "Value": 2,
+              "Style": "Success",
+              "Transitions": []
+            },
+            {
+              "Name": "Terminate",
+              "DisplayName": "Out Of Compliance",
+              "Description": "...",
+              "PercentComplete": 100,
+              "Value": 3,
+              "Style": "Failure",
+              "Transitions": []
+            },
+            {
+              "Name": "Drought",
+              "DisplayName": "Crops Ruined Due to Drought",
+              "Description": "Money Sent To Farmer",
+              "PercentComplete": 100,
+              "Value": 3,
+              "Style": "Failure",
+              "Transitions": []
+            },
+            {
+              "Name": "Flood",
+              "DisplayName": "Crops Ruined Due to Floods",
+              "Description": "Money Sent To Farmer",
+              "PercentComplete": 100,
+              "Value": 3,
+              "Style": "Failure",
+              "Transitions": []
+            }
+        ]
+      },
+      {
+        "Name": "Loan",
+        "DisplayName": "Agricultural Loan",
+        "Description": "Crowd Sourcing Your Agricultural loan.",
+        "Initiators": [ "Farmer" ],
+        "StartState":  "ReqAmount",
+        "Properties": [
+          {
+            "Name": "State",
+            "DisplayName": "State",
+            "Description": "Holds the state of the current scope",
+            "Type": {
+              "Name": "state"
+            }
+          },
+          {
+            "Name": "Farmerc",
+            "DisplayName": "Farmer",
+            "Description": "Farmer Requesting Insurance",
+            "Type": {
+              "Name": "Farmer"
+            }
+          },
+          {
+            "Name": "Administrator",
+            "DisplayName": "Administrator",
+            "Description": "Administrator",
+            "Type": {
+              "Name": "Administrator"
+            }
+          },
+          {
+            "Name": "InsuranceAmount",
+            "DisplayName": "InsuranceAmount",
+            "Description": "InsuranceAmount",
+            "Type": {
+              "Name": "money"
+            }
+          },
+          {
+            "Name": "Insurerc",
+            "DisplayName": "Insurer",
+            "Description": "Insurerc",
+            "Type": {
+              "Name": "Insurer"
+            }
+          },
+          {
+            "Name": "InsuranceNo",
+            "DisplayName": "InsuranceNo",
+            "Description": "InsuranceNo",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "StartDate",
+            "DisplayName": "StartDate",
+            "Description": "StartDate",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "EndDate",
+            "DisplayName": "EndDate",
+            "Description": "EndDate",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "lat",
+            "DisplayName": "Latitiude",
+            "Description": "Latitiude",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "lon",
+            "DisplayName": "Longitude",
+            "Description": "Longitude",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "FarmerIns",
+            "DisplayName": "Insurance Money Recived",
+            "Description": "Insurance Money Recived",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "MonthTimePeriod",
+            "DisplayName": "MonthTimePeriod",
+            "Description": "MonthTimePeriod",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "LoanReturns1",
+            "DisplayName": "LoanReturns1",
+            "Description": "LoanReturns1",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "LoanReturns2",
+            "DisplayName": "LoanReturns2",
+            "Description": "LoanReturns2",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "LoanReturns3",
+            "DisplayName": "LoanReturns3",
+            "Description": "LoanReturns3",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "status",
+            "DisplayName": "Status",
+            "Description": "Status",
+            "Type": {
+              "Name": "string"
+            }
+          }
+        ],
+        "Constructor": {
+          "Parameters": [
+            {
+              "Name": "fmr",
+              "Description": "Farmer",
+              "DisplayName": "Farmer",
+              "Type": {
+                "Name": "Farmer"
+              }
+            },
+            {
+              "Name": "ins",
+              "Description": "Insurer",
+              "DisplayName": "Insurer",
+              "Type": {
+                "Name": "Insurer"
+              }
+            },
+            {
+              "Name": "iamt",
+              "Description": "Insurance Amount",
+              "DisplayName": "Insurance Amount",
+              "Type": {
+                "Name": "int"
+              }
+            },
+            {
+              "Name": "ino",
+              "Description": "Insurance No",
+              "DisplayName": "Insurance No",
+              "Type": {
+                "Name": "string"
+              }
+            },
+            {
+              "Name": "tp",
+              "Description": "Time Period in Months",
+              "DisplayName": "Time Period in Months",
+              "Type": {
+                "Name": "int"
+              }
+            },
+            {
+              "Name": "sd",
+              "Description": "Start Date",
+              "DisplayName": "Start Date",
+              "Type": {
+                "Name": "string"
+              }
+            },
+            {
+              "Name": "ed",
+              "Description": "End Date",
+              "DisplayName": "End Date",
+              "Type": {
+                "Name": "string"
+              }
+            },
+            {
+              "Name": "lt",
+              "Description": "Latitude",
+              "DisplayName": "Latitude",
+              "Type": {
+                "Name": "string"
+              }
+            },
+            {
+              "Name": "ln",
+              "Description": "Longitude",
+              "DisplayName": "Longitude",
+              "Type": {
+                "Name": "string"
+              }
+            }
+            
+          ]
+        },
+        "Functions": [
+          {
+            "Name": "setLoanAmount",
+            "DisplayName": "Amount of Loan Required",
+            "Description": "Amount of Loan Required",
+            "Parameters": [
+                {
+                "Name": "r",
+                  "Description": "Amount of Loan Required",
+                  "DisplayName": "Amount of Loan Required",
+                  "Type": {
+                    "Name": "int"
+                  }
+                },
+                {
+                  "Name": "ltp",
+                    "Description": "Loan Time Period in months",
+                    "DisplayName": "Loan Time Period in months",
+                    "Type": {
+                      "Name": "int"
+                    }
+                }
+            ]
+          },
+          {
+            "Name": "makeBid1",
+            "DisplayName": "Make BID",
+            "Description": "Make BID",
+            "Parameters": [
+              {
+                "Name": "lamt",
+                  "Description": "Lending Amount",
+                  "DisplayName": "Lending Amount",
+                  "Type": {
+                    "Name": "int"
+                  }
+                },
+                {
+                  "Name": "intrest",
+                    "Description": "Intrest Rate",
+                    "DisplayName": "Intrest Rate",
+                    "Type": {
+                      "Name": "int"
+                    }
+                }
+            ]
+          },
+          {
+            "Name": "makeBid2",
+            "DisplayName": "Make BID",
+            "Description": "Make BID",
+            "Parameters": [
+              {
+                "Name": "lamt",
+                  "Description": "Lending Amount",
+                  "DisplayName": "Lending Amount",
+                  "Type": {
+                    "Name": "int"
+                  }
+                },
+                {
+                  "Name": "intrest",
+                    "Description": "Intrest Rate",
+                    "DisplayName": "Intrest Rate",
+                    "Type": {
+                      "Name": "int"
+                    }
+                }
+            ]
+          },
+          {
+            "Name": "makeBid3",
+            "DisplayName": "Make BID",
+            "Description": "Make BID",
+            "Parameters": [
+              {
+                "Name": "lamt",
+                  "Description": "Lending Amount",
+                  "DisplayName": "Lending Amount",
+                  "Type": {
+                    "Name": "int"
+                  }
+                },
+                {
+                  "Name": "intrest",
+                    "Description": "Intrest Rate",
+                    "DisplayName": "Intrest Rate",
+                    "Type": {
+                      "Name": "int"
+                    }
+                }
+            ]
+          },
+          {
+            "Name": "monitorIns",
+            "DisplayName": "Monitor Insurance Status",
+            "Description": "Monitor Insurance Status",
+            "Parameters": [
+              {
+                "Name": "code",
+                  "Description": "Status Code",
+                  "DisplayName": "Status Code",
+                  "Type": {
+                    "Name": "int"
+                  }
+                }
+            ]
+          },
+          {
+            "Name": "finalizeBids",
+            "DisplayName": "Finalize Loan Bids",
+            "Description": "Finalize Loan Bids",
+            "Parameters": [
+              {
+                "Name": "bid1",
+                  "Description": "Bid 1 - Accept(1)/Reject(0)",
+                  "DisplayName": "Bid 1 - Accept(1)/Reject(0)",
+                  "Type": {
+                    "Name": "int"
+                  }
+                },
+                {
+                  "Name": "bid2",
+                    "Description": "Bid 2 - Accept(1)/Reject(0)",
+                    "DisplayName": "Bid 2 - Accept(1)/Reject(0)",
+                    "Type": {
+                      "Name": "int"
+                  }
+                },
+                {
+                    "Name": "bid3",
+                      "Description": "Bid 3 - Accept(1)/Reject(0)",
+                      "DisplayName": "Bid 3 - Accept(1)/Reject(0)",
+                      "Type": {
+                        "Name": "int"
+                      }
+                }
+            ]
+          }
+        ],
+        "States": [
+          {
+            "Name": "ReqAmount",
+            "DisplayName": "Initiate Loan Request",
+            "Description": "Initiate Loan Request",
+            "PercentComplete": 10,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": [],
+                "AllowedInstanceRoles": ["Farmerc"],
+                "Description": "...",
+                "Function": "setLoanAmount",
+                "NextStates": [ "AcceptBids1" ],
+                "DisplayName": "Initiate Loan Request"
+              }
+            ]
+          },
+          {
+            "Name": "AcceptBids1",
+            "DisplayName": "Make BID",
+            "Description": "Make a BID",
+            "PercentComplete": 30,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": ["Invester"],
+                "AllowedInstanceRoles": [],
+                "Description": "...",
+                "Function": "makeBid1",
+                "NextStates": [ "AcceptBids2" ],
+                "DisplayName": "Place BID"
+              }
+            ]
+          },
+          {
+            "Name": "AcceptBids2",
+            "DisplayName": "Make BID",
+            "Description": "Make a BID",
+            "PercentComplete": 30,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": ["Invester"],
+                "AllowedInstanceRoles": [],
+                "Description": "...",
+                "Function": "makeBid2",
+                "NextStates": [ "AcceptBids3" ],
+                "DisplayName": "Place BID"
+              }
+            ]
+          },
+          {
+            "Name": "AcceptBids3",
+            "DisplayName": "Make BID",
+            "Description": "Make a BID",
+            "PercentComplete": 30,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": ["Invester"],
+                "AllowedInstanceRoles": [],
+                "Description": "...",
+                "Function": "makeBid3",
+                "NextStates": [ "FinalizeBids" ],
+                "DisplayName": "Place BID"
+              }
+            ]
+          },
+          {
+            "Name": "FinalizeBids",
+            "DisplayName": "Finilize Top BIDs",
+            "Description": "Finilize Top BIDs",
+            "PercentComplete": 50,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": [],
+                "AllowedInstanceRoles": ["Farmerc"],
+                "Description": "...",
+                "Function": "finalizeBids",
+                "NextStates": [ "Monitor" ],
+                "DisplayName": "Finilize Top BIDs"
+              }
+            ]
+          },
+          {
+            "Name": "Monitor",
+            "DisplayName": "Monitor Insurance Status",
+            "Description": "Monitor Insurance Status",
+            "PercentComplete": 70,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": [],
+                "AllowedInstanceRoles": ["Farmerc"],
+                "Description": "...",
+                "Function": "monitorIns",
+                "NextStates": [ "Harvested", "Calamity" ],
+                "DisplayName": "Monitor Insurance Status"
+              }
+            ]
+          },
+          {
+            "Name": "Calamity",
+            "DisplayName": "Crops Ruined Due to natural disaster",
+            "Description": "Loan paid off using insurance money",
+            "PercentComplete": 100,
+            "Value": 3,
+            "Style": "Failure",
+            "Transitions": []
+          },
+          {
+            "Name": "Harvested",
+            "DisplayName": "Crops Sucessfully Harvested",
+            "Description": "Loan paid off using by selling harvest",
+            "PercentComplete": 100,
+            "Value": 3,
+            "Style": "Success",
+            "Transitions": []
+          }
+          
+          
+        ]
+      }
+    ]
+  }
+  
